@@ -14,7 +14,7 @@ win = sg.Window("31ゲーム", layout, font=(None,14), finalize=True)
 def get_resource(filename):
     if hasattr(sys, "_MEIPASS"):
         return os.path.join(sys._MEIPASS, filename)
-    return filename
+    return os.path.join(os.path.dirname(__file__), filename)
 
 def getnextnums(n):
     global nextnums, choicemsg

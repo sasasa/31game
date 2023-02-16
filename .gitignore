@@ -1,2 +1,7 @@
 dist/
 build/
+31game.build/
+31game.onefile-build/
+31game.dist/
+31game.exe
+
