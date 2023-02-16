@@ -2,6 +2,7 @@ import PySimpleGUI as sg
 import random
 import os
 import sys
+import time
 sg.theme("DarkBrown3")
 
 layout = [[sg.T("31ゲームをしよう！ 31を言うと負けだよ。")],
@@ -32,9 +33,22 @@ def question():
     win["btn"].update(f" 入力 ")
 
 def com_turn(comnum):
+    global playflag
     player_num = comnum
     keynums = [2,6,10,14,18,22,26,30]
     getnextnums(comnum)
+    time.sleep(1)
+    # 次が31しか選べない状況の場合
+    if nextnums == [31]:
+        win["txt1"].update("31。あなたの勝ちだよ。\nおめでとう！")
+        win["img1"].update(get_resource("res/futaba1.png"))
+        win["txt2"].update("ボタンを押すと、また遊べるよ。")
+        win["btn"].update(f" また遊ぶ ")
+        playflag = False
+        return
+    if 31 in nextnums:
+        # 選択肢から31を言う事は削除する
+        nextnums.remove(31)
     for n in nextnums:
         if n in keynums:
             comnum = n
